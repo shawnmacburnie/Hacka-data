@@ -2,8 +2,10 @@
 Get Data for all your hackathon needs. This is great for hackathon to get quick and easy data in any city you wish. It uses yelp to find the different categories you wish to search by and saves them in an easy to use .csv file, for quick and easy viewing of the data, as well as importing the file into a database.
 
 ## Getting started
-
-update dependancies `npm i`
+To run this all you need to do is run
+```
+npm i -g hacka-data
+```
 
 You Must set some environment variables before using:
 ```
@@ -15,7 +17,7 @@ export yelp_token_secret="your_token_secret"
 
 ### To run script:
 ```
-node run.js "Location" [categories]
+hacka-data "Location" [categories]
 ```
 Where location is the area in which you want results, places with more then one name, such as Halifax, you will need to also supply state/province code along with it to specifiy which one you want. example: "Halifax, NS".
 
@@ -25,12 +27,12 @@ The categories is just n number of categories you want to search by, seporated b
 
 If you want to get just one of the categories then, lets say just vet:
 ```
-node run.js "halifax, NS" vet
+hacka-data "halifax, NS" vet
 ```
 
 you can group the search by different categories, lets say you want to group all vets who also have dogwalking services.
 ```
-node run.js "Halifax, NS" vet dogwalkers
+hacka-data "Halifax, NS" vet dogwalkers
 ```
 You can keep adding as many categories as you wish here.
 
