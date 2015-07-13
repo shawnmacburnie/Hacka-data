@@ -1,5 +1,5 @@
 # Hacka-data
-Get Data for all your hackathon needs
+Get Data for all your hackathon needs. This is great for hackathon to get quick and easy data in any city you wish. It uses yelp to find the different categories you wish to search by and saves them in an easy to use .csv file, for quick and easy viewing of the data, as well as importing the file into a database.
 
 ## Getting started
 
