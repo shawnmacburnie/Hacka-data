@@ -34,6 +34,7 @@ you can group the search by different categories, lets say you want to group all
 ```
 node run.js "Halifax, NS" vet dogwalkers
 ```
+You can keep adding as many categories as you wish here.
 
 ## List of categorys
 ```
