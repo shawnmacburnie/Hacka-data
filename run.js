@@ -3,11 +3,16 @@ var fs = require('fs'),
     categorys = "",
     location = "",
     total = 0,
-    credentials = JSON.parse(fs.readFileSync(".yelp_credentials"));
+    pwd = process.cwd();
 
-var yelp = require("yelp").createClient(credentials);
+var yelp = require("yelp").createClient({
+    consumer_key: process.env.yelp_consumer_key,
+    consumer_secret: process.env.yelp_consumer_secret,
+    token: process.env.yelp_token,
+    token_secret: process.env.yelp_token_secret
+});
 
-fs.writeFileSync("data.csv", 'name,civicAddress,phoneNumber,description,latitude,longitude,type,buisnessId\n');
+fs.writeFileSync(pwd + "/data.csv", 'name,civicAddress,phoneNumber,description,latitude,longitude,type,buisnessId\n');
 
 if (process.argv.length < 3) {
     return console.log("ERROR:\tMust pass a location as first parameter!");
@@ -39,10 +44,11 @@ function find() {
                 }
                 message += item.location.city + " " + item.location.state_code + " " + item.location.postal_code + ',';
                 message += item.phone + ',' + (item.snippet_text ? item.snippet_text.replace(/,|\n/g, "") : '') + ',' + item.location.coordinate.latitude + ',' + item.location.coordinate.longitude +',' + categorys.replace(/,/g, "") + ',' + item.id;
-                if (message.replace(/ /g, "").length) fs.appendFileSync("data.csv", message.replace(/undefined/g,"") +  '\n');
+                if (message.replace(/ /g, "").length) fs.appendFileSync(pwd + "/data.csv", message.replace(/undefined/g,"") +  '\n');
             }
         }
         console.log("Finished!")
+        console.log("File Saved to: " + pwd + "/data.csv")
         console.log("Total items added: " + total);
     });
 }

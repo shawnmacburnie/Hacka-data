@@ -5,14 +5,12 @@ Get Data for all your hackathon needs. This is great for hackathon to get quick 
 
 update dependancies `npm i`
 
-You Must have a `.yelp_credentials` with the following information:
+You Must set some environment variables before using:
 ```
-{
-    "consumer_key": "your_key",
-    "consumer_secret": "your_secret",
-    "token": "your_token",
-    "token_secret": "your_token_secret"
-}
+export yelp_consumer_key="your_key"
+export yelp_consumer_secret="your_secret"
+export yelp_token="your_token"
+export yelp_token_secret="your_token_secret"
 ```
 
 ### To run script:

@@ -24,5 +24,6 @@
   "dependencies": {
     "yelp": "^0.2.0"
   },
-  "bin": "./run.js"
+  "bin": "./run.js",
+  "config": {"pp": "Shawn Macburnie"}
 }
