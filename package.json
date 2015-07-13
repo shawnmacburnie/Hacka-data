@@ -1,7 +1,8 @@
 {
-  "name": "Hacka-data",
+  "name": "hacka-data",
   "version": "1.0.0",
   "description": "Get Data for all your hackathon needs",
+  "keywords": ["data", "mining", "yelp"],
   "main": "run.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,7 +18,7 @@
   },
   "homepage": "https://github.com/sookool99/Hacka-data#readme",
   "dependencies": {
-    "q": "^1.4.1",
     "yelp": "^0.2.0"
-  }
+  },
+  "bin": "./run.js"
 }
