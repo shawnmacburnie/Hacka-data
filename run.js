@@ -1,11 +1,12 @@
 var fs = require('fs'),
+    categorys = "",
+    location = "",
+    total = 0,
     credentials = JSON.parse(fs.readFileSync(".yelp_credentials"));
 
 var yelp = require("yelp").createClient(credentials);
 
 fs.writeFileSync("data.csv", 'name,civicAddress,phoneNumber,description,latitude,longitude,type,buisnessId\n');
-
-var location = "";
 
 if (process.argv.length < 3) {
     return console.log("ERROR:\tMust pass a location as first parameter!");
@@ -14,9 +15,7 @@ if (process.argv.length < 3) {
     process.stdout.write("ERROR:\tTo Find All Category's: https://www.yelp.com/developers/documentation/v2/all_category_list");
     return;
 }
-
-total = 0;
-function find(categorys) {
+function find() {
     yelp.search({
         category_filter: categorys,
         location: location,
@@ -47,15 +46,13 @@ function find(categorys) {
     });
 }
 
-
-var categ = "";
 process.argv.some(function(val, index, array) {
     if (index >= 2) {
         if (index == 2) {
             location = val;
         } else {
-            categ += (index == 3 ? '' : ',') + val;
+            categorys += (index == 3 ? '' : ',') + val;
         }
     }
 });
-find(categ);
+find();
