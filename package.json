@@ -1,6 +1,6 @@
 {
   "name": "hacka-data",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get Data for all your hackathon needs",
   "keywords": [
     "data",
@@ -25,5 +25,7 @@
     "yelp": "^0.2.0"
   },
   "bin": "./run.js",
-  "config": {"pp": "Shawn Macburnie"}
+  "config": {
+    "pp": "Shawn Macburnie"
+  }
 }
