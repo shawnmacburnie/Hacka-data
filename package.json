@@ -1,0 +1,23 @@
+{
+  "name": "Hacka-data",
+  "version": "1.0.0",
+  "description": "Get Data for all your hackathon needs",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sookool99/Hacka-data"
+  },
+  "author": "Shawn Macburnie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sookool99/Hacka-data/issues"
+  },
+  "homepage": "https://github.com/sookool99/Hacka-data#readme",
+  "dependencies": {
+    "q": "^1.4.1",
+    "yelp": "^0.2.0"
+  }
+}
