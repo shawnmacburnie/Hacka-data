@@ -6,6 +6,9 @@ var fs = require('fs'),
     findSearch = false,
     pwd = process.cwd();
 
+var now = new Date();
+var fileName = "/data-" + now.getTime() + '.csv';
+
 var yelp = require("yelp").createClient({
     consumer_key: process.env.yelp_consumer_key,
     consumer_secret: process.env.yelp_consumer_secret,
@@ -57,14 +60,14 @@ function yelpQuery(offset, categ) {
                 }
                 message += item.location.city + " " + item.location.state_code + " " + item.location.postal_code + ',';
                 message += item.phone + ',' + (item.snippet_text ? item.snippet_text.replace(/,|\n/g, "") : '') + ',' + item.location.coordinate.latitude + ',' + item.location.coordinate.longitude + ',' + categ.replace(/,/g, "") + ',' + item.id;
-                if (message.replace(/ /g, "").length) fs.appendFileSync(pwd + "/data.csv", message.replace(/undefined/g, "") + '\n');
+                if (message.replace(/ /g, "").length) fs.appendFileSync(pwd + fileName, message.replace(/undefined/g, "") + '\n');
             }
         }
         console.log(data.length + " items added.");
     });
 }
 
-fs.writeFileSync(pwd + "/data.csv", 'name,civicAddress,phoneNumber,description,latitude,longitude,type,buisnessId\n');
+fs.writeFileSync(pwd + fileName, 'name,civicAddress,phoneNumber,description,latitude,longitude,type,buisnessId\n');
 
 if (process.argv.length < 4) {
     return console.log("ERROR:\tMust pass required paremeters");
