@@ -5,7 +5,6 @@ var fs = require('fs'),
     searchCompleted = 0,
     total = 0,
     pwd = process.cwd();
-
 var yelp = require("yelp").createClient({
     consumer_key: process.env.yelp_consumer_key,
     consumer_secret: process.env.yelp_consumer_secret,
@@ -13,15 +12,6 @@ var yelp = require("yelp").createClient({
     token_secret: process.env.yelp_token_secret
 });
 
-fs.writeFileSync(pwd + "/data.csv", 'name,civicAddress,phoneNumber,description,latitude,longitude,type,buisnessId\n');
-
-if (process.argv.length < 3) {
-    return console.log("ERROR:\tMust pass a location as first parameter!");
-} else if (process.argv.length < 4) {
-    console.log("ERROR:\tMust pass atleast 1 category after location");
-    process.stdout.write("ERROR:\tTo Find All Category's: https://www.yelp.com/developers/documentation/v2/all_category_list");
-    return;
-}
 function find() {
     yelpQuery();
     yelpQuery(20);
@@ -63,6 +53,16 @@ function yelpQuery(offset) {
             console.log("Total items added: " + total);
         }
     });
+}
+
+fs.writeFileSync(pwd + "/data.csv", 'name,civicAddress,phoneNumber,description,latitude,longitude,type,buisnessId\n');
+
+if (process.argv.length < 3) {
+    return console.log("ERROR:\tMust pass a location as first parameter!");
+} else if (process.argv.length < 4) {
+    console.log("ERROR:\tMust pass atleast 1 category after location");
+    process.stdout.write("ERROR:\tTo Find All Category's: https://www.yelp.com/developers/documentation/v2/all_category_list");
+    return;
 }
 
 process.argv.some(function(val, index, array) {
