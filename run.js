@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 var fs = require('fs'),
     categorys = "",
     location = "",
@@ -18,11 +19,11 @@ function find() {
 }
 
 function yelpQuery(offset) {
-    if(!offset) offset = 0;
+    if (!offset) offset = 0;
     yelp.search({
         category_filter: categorys,
         location: location,
-        radius_filter: 39000,
+        radius_filter: 40000,
         sort: 2,
         limit: 20,
         offset: offset
@@ -32,22 +33,22 @@ function yelpQuery(offset) {
         total += data.length;
         for (var i = 0; i < data.length; i++) {
             var item = data[i];
-            if(item && item.name && item.location && item.location.coordinate) {
+            if (item && item.name && item.location && item.location.coordinate) {
                 var message = item.name.replace(/,/g, "") + ',';
 
-                if(typeof(item.location.address) === "object") {
-                    for(var kk in item.location.address){
+                if (typeof(item.location.address) === "object") {
+                    for (var kk in item.location.address) {
                         message += item.location.address[kk].replace(/,/g, "") + " ";
                     }
                 } else {
                     message += item.location.address + " ";
                 }
                 message += item.location.city + " " + item.location.state_code + " " + item.location.postal_code + ',';
-                message += item.phone + ',' + (item.snippet_text ? item.snippet_text.replace(/,|\n/g, "") : '') + ',' + item.location.coordinate.latitude + ',' + item.location.coordinate.longitude +',' + categorys.replace(/,/g, "") + ',' + item.id;
-                if (message.replace(/ /g, "").length) fs.appendFileSync(pwd + "/data.csv", message.replace(/undefined/g,"") +  '\n');
+                message += item.phone + ',' + (item.snippet_text ? item.snippet_text.replace(/,|\n/g, "") : '') + ',' + item.location.coordinate.latitude + ',' + item.location.coordinate.longitude + ',' + categorys.replace(/,/g, "") + ',' + item.id;
+                if (message.replace(/ /g, "").length) fs.appendFileSync(pwd + "/data.csv", message.replace(/undefined/g, "") + '\n');
             }
         }
-        if(++searchCompleted == 2) {
+        if (++searchCompleted == 2) {
             console.log("Finished!");
             console.log("File Saved to: " + pwd + "/data.csv");
             console.log("Total items added: " + total);
