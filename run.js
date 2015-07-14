@@ -14,6 +14,7 @@ var yelp = require("yelp").createClient({
 });
 
 function find() {
+    console.log("Running Query for " + categorys);
     yelpQuery();
     yelpQuery(20);
 }
